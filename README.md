@@ -1,12 +1,10 @@
-# Ronaldo_United_Era_Shots_Analysis
-
 <p align="center">
   <img width="400" height="300" src="https://github.com/yash-pimpale/Ronaldo_United_Era_Shots_Analysis/blob/main/Media/CR7.jpeg">
 </p>
 
 # Ronaldo's United Era Shots Analysis
 
-## Overview
+## Objective
 
 1. Analyze and gain insights into Cristiano Ronaldo's shot patterns during his tenure with Manchester United from the 1996-1997 season to the 1999-2000 season.
 2. Investigate factors such as shot conversion rate, goal distribution, shot types, and performance in different areas of the field.
@@ -37,23 +35,43 @@ Based on above mentioned details we will now implement the project using Snowfla
 
 4. Identify Key Performance Indicators (KPIs): Determine relevant metrics that serve as key performance indicators for analysis (e.g., conversion rate, average distance of the shot, etc).
 
-Loading and Preprocessing
+### 2. Real-Time Data Loading in Snowflake
 
-We'll start by importing data from CSV files into Power BI tables and then perform various data transformation tasks, including renaming columns, converting values, and creating calculated columns.
+Leveraged Snowflake's real-time data loading capabilities to seamlessly ingest data from an Amazon S3 bucket into Snowflake tables using Snowpipe.
 
-- Column Renaming: To make the data more user-friendly, we will rename certain columns. For example, columns with abbreviated names such as 0's, 4's, etc will be given clearer titles.
-
-- Data Transformation: We will convert strings column e.g. "out" to number data types and update values 0 (out) or 1(not out) accordingly.
-
-- Calculated Columns: We will create new columns that calculate important metrics for our analysis. For example, we calculate "Boundary Runs" by summing the number of fours and sixes a player hits. Also, we determine the "Stage" of the match basis match date, indicating whether it was a Qualifier or Super 12 stage match.
-
-Below is the preview of the data:-
+Below diagram shows the Snowpipe auto-ingest process flow:-
 
 <p align="center">
-  <img width="700" height="400" src="https://github.com/yash-pimpale/T20_World_Cup_2022_Dream_Team_Selection/blob/main/Media/Batting_Summary_Table.png">
+  <img width="400" height="700" src="https://github.com/yash-pimpale/Ronaldo_United_Era_Shots_Analysis/blob/main/Media/S3_to_Snowflake_Data_Loaded.png">
 </p>
 
-### 2. Creating Key Parameters
+1. Whenever the user uploads files to the AWS S3 bucket, the cloud storage notification service triggers a SQS notification to the Snowflake Snowpipe object. 
+
+2. This S3 event notification informs Snowpipe that a new file has been added to the S3 bucket and is ready to be loaded into the Snowflake table. 
+
+3. When Snowpipe receives this trigger, it extracts the data file from the AWS S3 bucket and loads it into the table.
+
+Note: Snowpipe uses file-loading metadata associated with each pipe object to prevent loading the same files again. So, if the same file appears in the S3 bucket, Snowpipe will not reload it.
+
+### Steps
+
+1. Amazon S3 Bucket: Created an S3 bucket on Amazon using an IAM user with appropriate premission. Snowflake requires the following permissions on an S3 bucket and folder to be able to access files in the folder - s3:GetBucketLocation, s3:GetObject, s3:GetObjectVersion, s3:ListBucket.
+
+2. Snowflake Table: Created a Table in Snowflake Datawarehouse as per datatypes identified in Data Profiling steps. Data will be loaded in this table.
+
+3. External Stage: Created an external stage that references the S3 bucket where the data file is stored. External Stage is used to load data which is stored externally (e.g. Amazon S3, Azure blob storage) into tables in a Snowflake database.
+  
+4. Snowpipe: It is a continuous data ingestion service that automatically loads new data as it arrives in a specified location. It fetches the data files from the external stage and temporarily queue them before loading them into the target table. Provided file format as well while creating the snowpipe.
+
+More details can be found in the SQL file attached.
+
+Log of data being loaded into snowflake using snowpipe:-
+
+<p align="center">
+  <img width="700" height="400" src="https://github.com/yash-pimpale/Ronaldo_United_Era_Shots_Analysis/blob/main/Media/S3_to_Snowflake_Data_Loaded.png">
+</p>
+
+### 3. Data Transformation & Visualization in Microsoft Power BI
 
 We will now create key parameters which are essential for performing calculations and analysis. These parameters allow us to define custom calculations/aggregations based on existing column data. For e.g. 
 - Total Runs : It is calculated as the sum of runs scored by players in the batting summary table i.e. SUM(batting_summary[runs]).
@@ -120,3 +138,6 @@ Note: File name is changed post this video was captured.
 ## Conclusion
 
 This project demonstrates the power of data analysis and visualization in sports selection process. It enables cricket enthusiasts, coaches, and team management to make informed decisions and assemble the most competitive team for a prestigious tournament like the ICC T20 World Cup. The project's structured approach and user-friendly reports empower stakeholders to optimize player selection based on specific criteria and roles, ultimately enhancing the team's chances of success.
+
+
+https://docs.snowflake.com/en/user-guide/data-load-snowpipe-auto-s3
