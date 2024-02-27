@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="400" height="300" src="https://github.com/yash-pimpale/Ronaldo_United_Era_Shots_Analysis/blob/main/Media/CR7.jpeg">
+  <img width="400" height="700" src="https://github.com/yash-pimpale/Ronaldo_United_Era_Shots_Analysis/blob/main/Media/CR7.jpeg">
 </p>
 
 # Ronaldo's United Era Shots Analysis
@@ -27,6 +27,8 @@ Based on above mentioned details we will now implement the project using Snowfla
 
 ### 1. Data Profiling
 
+Performed below tasks as part of data profiling.
+
 1. Column Datatype Validation: Confirm that each column has an appropriate and consistent datatype.
 
 2. Data Value Inspection: Examine the actual values within each column for anomalies, inconsistencies, or unexpected patterns.
@@ -42,7 +44,7 @@ Leveraged Snowflake's real-time data loading capabilities to seamlessly ingest d
 Below diagram shows the Snowpipe auto-ingest process flow:-
 
 <p align="center">
-  <img width="400" height="700" src="https://github.com/yash-pimpale/Ronaldo_United_Era_Shots_Analysis/blob/main/Media/S3_to_Snowflake_Data_Loaded.png">
+  <img width="500" height="650" src="https://github.com/yash-pimpale/Ronaldo_United_Era_Shots_Analysis/blob/main/Media/S3_to_Snowflake_Process.png">
 </p>
 
 1. Whenever the user uploads files to the AWS S3 bucket, the cloud storage notification service triggers a SQS notification to the Snowflake Snowpipe object. 
@@ -74,30 +76,54 @@ Log of data being loaded into snowflake using snowpipe:-
 ### 3. Data Transformation & Visualization in Microsoft Power BI
 
 We will now create key parameters which are essential for performing calculations and analysis. These parameters allow us to define custom calculations/aggregations based on existing column data. For e.g. 
-- Total Runs : It is calculated as the sum of runs scored by players in the batting summary table i.e. SUM(batting_summary[runs]).
-- Batting Average : It represents the average number of runs scored per innings played. Calculated using the formula - DIVIDE([Total Runs],[Total Innings Dismissed],0).
+- Total Goals: Denotes the total number of goals scored by Ronaldo based on "IS_GOAL" column. DAX formula - COUNTROWS(FILTER(RONALDO_YDS_TB_INSERT, RONALDO_YDS_TB_INSERT[IS_GOAL] = 1)).
+- Total Shots Taken: It represents the total number of shots taken by Ronaldo. DAX formula - SUMX(RONALDO_YDS_TB_INSERT,1).
+- Goal Conversion Rate: Ratio of number of goals scored by total shots taken. DAX formula - [TOTAL_GOALS]/[TOTAL_SHOTS_TAKEN]*100
+- Average Distance of Shot: Represents the average distance from the goal post to the location where shot was taken. DAX formula - AVERAGE(RONALDO_YDS_TB_INSERT[DISTANCE_OF_SHOT])
 
-List of all key parameters created and used in this project is [here](https://github.com/yash-pimpale/T20_World_Cup_2022_Dream_Team_Selection/tree/main/).
+### a. Data Transformation
 
+Below is the list of transformation performed on the dataset.
+1. Removed duplicate columns.
+2. Extracted opponent team name by split the "HOME/AWAY" column based on "@" and "vs." characters. "@" denotes that Manchester United is playing an "Away" match, while "vs." denotes it is a "Home" match.
+3. Extracted latitude and longitude from "LAT/LNG" column based on "," (comma) as a delimitor.
+4. Created custom columns which will be used to enhance the visual representation. E.g. "BIN_IS_GOAL", "DISP_IS_AWAY_MATCH".
+5. Specified the date format for the "DATE_OF_GAME" column.
+6. Removed all the rows with missing values.
+
+Preview of the dataset post transformation:-
 <p align="center">
-  <img width="700" height="400" src="https://github.com/yash-pimpale/T20_World_Cup_2022_Dream_Team_Selection/blob/main/Media/Key_Parameters.png">
+  <img width="700" height="400" src="https://github.com/yash-pimpale/Ronaldo_United_Era_Shots_Analysis/blob/main/Media/Dataset_preview.png">
 </p>
 
-### 3. Data Modeling
+### b. Data Visualization
 
-We will now establish relationships between the tables. This step is crucial for integrating data from different sources and tables, enabling us to create meaningful visualizations and perform analyses across related data.
+Implemented three distinct reports presenting varied statistical insights derived from Cristiano Ronaldo's shot analysis. Employed the page navigation feature to facilitate seamless and swift transitions between different sets of statistics, enhancing the user experience and enabling efficient exploration of the comprehensive shot dataset.
 
-- Identify Key Fields: We first identify the key fields in each table that can be used to connect the tables. These key fields should have unique identifiers, such as Match_id and Name, that are common across multiple tables. 
+1. Overall Statistics
 
-- Create Relationships: Using Power BI's modeling, we will create relationships between the tables based on these fields.
-  1. We establish a many-to-one relationship between the "Batting Summary" and "Players" table and the "Bowling Summary" and "Players" tables using the "Name" field.
-  2. We also create a many-to-one relationship between the "Batting Summary" and "Match Summary" table and the "Bowling Summary" and "Match Summary" tables using the "mattch_id" field.
- 
+- This report features key performance indicators (KPIs) such as total goals, total shots, total matches, and conversion rate.
+- Included an interactive table detailing goals scored in each season, allowing for dynamic exploration of seasonal goal distribution.
+- Implemented a donut chart showcasing the percentage of goals scored in home and away games, providing a visual breakdown of scoring efficiency in different match settings.
+- Integrated another interactive donut chart illustrating the percentage of goals scored based on shot basics, offering insights into the effectiveness of various shot techniques.
+- Utilized page navigation features to enhance the interactivity of the report, enabling users to seamlessly explore and analyze overall statistics with ease.
+
 <p align="center">
-  <img width="700" height="400" src="https://github.com/yash-pimpale/T20_World_Cup_2022_Dream_Team_Selection/blob/main/Media/Data_Modelling.png">
+  <img width="600" height="600" src="https://github.com/yash-pimpale/Ronaldo_United_Era_Shots_Analysis/blob/main/Media/Overall_Statistics.png">
 </p>
 
-### 4. Creating Interactive Reports
+2. Position Analysis
+
+<p align="center">
+  <img width="600" height="600" src="https://github.com/yash-pimpale/Ronaldo_United_Era_Shots_Analysis/blob/main/Media/Position_Analysis.png">
+</p>
+
+3. Shot Analysis
+
+<p align="center">
+  <img width="600" height="600" src="https://github.com/yash-pimpale/Ronaldo_United_Era_Shots_Analysis/blob/main/Media/Shot_Analysis.png">
+</p>
+
 
 Create interactive report for each type of role by adding respective filters as mentioned above. Add slicer for qualifier and super 12 stage. Create buttons for each role so that user can navigate to respective page by click on it (control + click). Add table displaying selected players based on criteria and add tooltip on player name to display indetailed details of the player. Add onclick functionality such that when user clicks on the player, its statistics are displayed (otherwise hidden). Select multiple player to check their combined stats. Add 4 separate stacked line chart for performance metrics. 
 
@@ -113,7 +139,7 @@ Create interactive reports in Power BI involves designing visualizations and use
 
 - Role Buttons: Created buttons for each role to enable users to navigate to the respective role page with a simple click (Ctrl + click).
 
-- Player Selection Table: Added a table to display selected players who meet the role-specific criteria. This table includes player names, role-specific key statistics and an interactive tooltip. When users hover over a player's name, the tooltip will display detailed player information, such as player's picture, country, batting and bowling statistics (depending upon the role). Also allowed users to select multiple players from the table to compare their combined statistics.
+- Opposite Selection Table: Added a table to display selected players who meet the role-specific criteria. This table includes player names, role-specific key statistics and an interactive tooltip. When users hover over a player's name, the tooltip will display detailed player information, such as player's picture, country, batting and bowling statistics (depending upon the role). Also allowed users to select multiple players from the table to compare their combined statistics.
 
 <p align="center">
   <img width="700" height="400" src="https://github.com/yash-pimpale/T20_World_Cup_2022_Dream_Team_Selection/blob/main/Media/Report_Hover_Functionality.png">
@@ -133,11 +159,13 @@ Below video showcases all the functionalities and capabilities of this Power BI 
   <img width="700" height="400" src="https://github.com/yash-pimpale/T20_World_Cup_2022_Dream_Team_Selection/blob/main/Media/World_Cup_Dream_Team_Report.gif">
 </p>
 
-Note: File name is changed post this video was captured.
 
 ## Conclusion
 
 This project demonstrates the power of data analysis and visualization in sports selection process. It enables cricket enthusiasts, coaches, and team management to make informed decisions and assemble the most competitive team for a prestigious tournament like the ICC T20 World Cup. The project's structured approach and user-friendly reports empower stakeholders to optimize player selection based on specific criteria and roles, ultimately enhancing the team's chances of success.
 
 
-https://docs.snowflake.com/en/user-guide/data-load-snowpipe-auto-s3
+
+Refrences
+
+S3 to Snowflake Data Ingestion : [Snowflake Website](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-auto-s3)
