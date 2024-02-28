@@ -114,6 +114,8 @@ Implemented three distinct reports presenting varied statistical insights derive
 
 2. Position Analysis
 
+- 
+
 <p align="center">
   <img width="600" height="600" src="https://github.com/yash-pimpale/Ronaldo_United_Era_Shots_Analysis/blob/main/Media/Position_Analysis.png">
 </p>
@@ -125,38 +127,16 @@ Implemented three distinct reports presenting varied statistical insights derive
 </p>
 
 
-Create interactive report for each type of role by adding respective filters as mentioned above. Add slicer for qualifier and super 12 stage. Create buttons for each role so that user can navigate to respective page by click on it (control + click). Add table displaying selected players based on criteria and add tooltip on player name to display indetailed details of the player. Add onclick functionality such that when user clicks on the player, its statistics are displayed (otherwise hidden). Select multiple player to check their combined stats. Add 4 separate stacked line chart for performance metrics. 
-
-Create interactive reports in Power BI involves designing visualizations and user-friendly features to help users analyze data effectively. Here's how we can create interactive reports for each type of role and incorporate the specified features:
-
-- Role-Specific Pages: We will create separate report pages for each role i.e. Openers, Anchors, Finishers, All Rounders and Fast Bowlers. Added filters specific to each role, allowing users to select a role of interest. These will help users focus on the desired player criteria for each role.
-
 - Stage Slicers: Included slicer that allow users to filter data based on the qualifier and Super 12 stages, enabling them to compare player performance in different tournament stages.
-
-<p align="center">
-  <img width="700" height="400" src="https://github.com/yash-pimpale/T20_World_Cup_2022_Dream_Team_Selection/blob/main/Media/Pages_and_Slicer.png">
-</p>
-
-- Role Buttons: Created buttons for each role to enable users to navigate to the respective role page with a simple click (Ctrl + click).
 
 - Opposite Selection Table: Added a table to display selected players who meet the role-specific criteria. This table includes player names, role-specific key statistics and an interactive tooltip. When users hover over a player's name, the tooltip will display detailed player information, such as player's picture, country, batting and bowling statistics (depending upon the role). Also allowed users to select multiple players from the table to compare their combined statistics.
 
-<p align="center">
-  <img width="700" height="400" src="https://github.com/yash-pimpale/T20_World_Cup_2022_Dream_Team_Selection/blob/main/Media/Report_Hover_Functionality.png">
-</p>
-
-- OnClick Functionality: Incorporated onClick functionality for player names in the selection table. When a user clicks on a player's name, additional key statistics such as Batting Average, Strike Rate, Economy, etc will become visible (otherwise hidden) for that player according to the role.
-
-<p align="center">
-  <img width="700" height="400" src="https://github.com/yash-pimpale/T20_World_Cup_2022_Dream_Team_Selection/blob/main/Media/Report_OnClick_Functionality.png">
-</p>
-
 - Stacked Line Charts: Created four separate stacked line charts to visualize performance metrics. These charts can include metrics like batting average, strike rate, wickets taken, or any other relevant statistics vs match day, for players in each role.
 
-Below video showcases all the functionalities and capabilities of this Power BI report. It serves as a comprehensive demonstration of how users can interact with and leverage the report for informed decision-making.
+Below video showcases all the functionalities and capabilities of this Power BI Project. It serves as a comprehensive demonstration of how users can interact with and leverage the report for informed decision-making.
 
 <p align="center">
-  <img width="700" height="400" src="https://github.com/yash-pimpale/T20_World_Cup_2022_Dream_Team_Selection/blob/main/Media/World_Cup_Dream_Team_Report.gif">
+  <img width="600" height="600" src="https://github.com/yash-pimpale/Ronaldo_United_Era_Shots_Analysis/blob/main/Media/Ronaldo_Data_Visualization.gif">
 </p>
 
 
@@ -166,6 +146,6 @@ This project demonstrates the power of data analysis and visualization in sports
 
 
 
-Refrences
+## Refrences
 
 S3 to Snowflake Data Ingestion : [Snowflake Website](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-auto-s3)
