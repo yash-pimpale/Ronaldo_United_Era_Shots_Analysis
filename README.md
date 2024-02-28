@@ -75,7 +75,9 @@ Log of data being loaded into snowflake using snowpipe:-
 
 ### 3. Data Transformation & Visualization in Microsoft Power BI
 
-We will now create key parameters which are essential for performing calculations and analysis. These parameters allow us to define custom calculations/aggregations based on existing column data. For e.g. 
+Loaded the data into Power BI by creating a connection with Snowflake Datawarehouse.
+
+Created key parameters which are essential for performing calculations and analysis. These parameters allow us to define custom calculations/aggregations based on existing column data. For e.g. 
 - Total Goals: Denotes the total number of goals scored by Ronaldo based on "IS_GOAL" column. DAX formula - COUNTROWS(FILTER(RONALDO_YDS_TB_INSERT, RONALDO_YDS_TB_INSERT[IS_GOAL] = 1)).
 - Total Shots Taken: It represents the total number of shots taken by Ronaldo. DAX formula - SUMX(RONALDO_YDS_TB_INSERT,1).
 - Goal Conversion Rate: Ratio of number of goals scored by total shots taken. DAX formula - [TOTAL_GOALS]/[TOTAL_SHOTS_TAKEN]*100
