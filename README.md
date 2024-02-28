@@ -114,7 +114,7 @@ Implemented three distinct reports presenting varied statistical insights derive
 
 2. Position Analysis
 
-- This interactive report focus on analyzing Cristiano Ronaldo's shot positions and performance against specific opponent teams.
+- This interactive report focuses on analyzing Cristiano Ronaldo's shot positions and performance against specific opponent teams.
 - Incorporated a slicer allowing users to select the opponent team, facilitating dynamic filtering of the report based on the chosen team. A table showcases detailed match-specific information such as Date, Venue (Home or Away), Total Shots Taken, Goals Scored, Knockout Match status, and Game Season for matches played by Manchester United against the selected opponent.
 - Created an interactive scatter plot, illustrating Ronaldo's positions on the football field when shots were taken against the selected opponent. Points on the scatter plot are color-coded based on whether the shot resulted in a goal or not. Enhanced the scatter plot with a tooltip displaying crucial details such as location (X, Y), goal status, distance of the shot, shot area, and more.
 - KPI cards displays key metrics including Conversion Rate and Average Distance of the shot for quick reference.
@@ -126,16 +126,15 @@ Implemented three distinct reports presenting varied statistical insights derive
 
 3. Shot Analysis
 
+- This report helps to efficiently visualize the distribution and performance of Ronaldo's shots based on power and shot area and the importance of conversion rate.
+- Implemented a stacked column chart showcasing the conversion rates for the top 5 shot types, providing a detailed comparison of their effectiveness.
+- Designed an interactive donut chart displaying the distribution of goals scored based on the power of the shot, offering a visual breakdown of scoring efficiency at different power levels.
+- Incorporated a dynamic funnel chart representing the number of goals scored categorized by the area of the shot (Center, Right Side, Left Side, Mid Ground, etc.), offering a visual hierarchy of goal-scoring patterns.
+- Introduced KPI cards displaying average distance of the shot and average shots taken per match, providing concise summaries of key aspects of Ronaldo's shooting performance.
+
 <p align="center">
   <img width="600" height="600" src="https://github.com/yash-pimpale/Ronaldo_United_Era_Shots_Analysis/blob/main/Media/Shot_Analysis.png">
 </p>
-
-
-- Stage Slicers: Included slicer that allow users to filter data based on the qualifier and Super 12 stages, enabling them to compare player performance in different tournament stages.
-
-- Opposite Selection Table: Added a table to display selected players who meet the role-specific criteria. This table includes player names, role-specific key statistics and an interactive tooltip. When users hover over a player's name, the tooltip will display detailed player information, such as player's picture, country, batting and bowling statistics (depending upon the role). Also allowed users to select multiple players from the table to compare their combined statistics.
-
-- Stacked Line Charts: Created four separate stacked line charts to visualize performance metrics. These charts can include metrics like batting average, strike rate, wickets taken, or any other relevant statistics vs match day, for players in each role.
 
 Below video showcases all the functionalities and capabilities of this Power BI Project. It serves as a comprehensive demonstration of how users can interact with and leverage the report for informed decision-making.
 
@@ -146,9 +145,7 @@ Below video showcases all the functionalities and capabilities of this Power BI 
 
 ## Conclusion
 
-This project demonstrates the power of data analysis and visualization in sports selection process. It enables cricket enthusiasts, coaches, and team management to make informed decisions and assemble the most competitive team for a prestigious tournament like the ICC T20 World Cup. The project's structured approach and user-friendly reports empower stakeholders to optimize player selection based on specific criteria and roles, ultimately enhancing the team's chances of success.
-
-
+This project delivers a comprehensive analysis of Cristiano Ronaldo's shot performance during his Manchester United tenure. The 'Overall Statistics' report offers a macroscopic view, highlighting total goals, shots, matches, and conversion rates. The 'Position Analysis' report delves into match details, shot positions, and timeline dynamics against specific opponents. The 'Shot Analysis' report provides nuanced insights, focusing on top shot types, power distribution, and goal-scoring patterns. Together, these reports offer a holistic understanding, empowering stakeholders with actionable insights into Ronaldo's prolific goal-scoring journey at Manchester United.
 
 ## Refrences
 
