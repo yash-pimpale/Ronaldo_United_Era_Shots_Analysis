@@ -70,7 +70,7 @@ More details can be found in the SQL file attached.
 Log of data being loaded into snowflake using snowpipe:-
 
 <p align="center">
-  <img width="700" height="400" src="https://github.com/yash-pimpale/Ronaldo_United_Era_Shots_Analysis/blob/main/Media/S3_to_Snowflake_Data_Loaded.png">
+  <img width="600" height="400" src="https://github.com/yash-pimpale/Ronaldo_United_Era_Shots_Analysis/blob/main/Media/S3_to_Snowflake_Data_Loaded.png">
 </p>
 
 ### 3. Data Transformation & Visualization in Microsoft Power BI
@@ -93,7 +93,7 @@ Below is the list of transformation performed on the dataset.
 
 Preview of the dataset post transformation:-
 <p align="center">
-  <img width="700" height="400" src="https://github.com/yash-pimpale/Ronaldo_United_Era_Shots_Analysis/blob/main/Media/Dataset_preview.png">
+  <img width="600" height="350" src="https://github.com/yash-pimpale/Ronaldo_United_Era_Shots_Analysis/blob/main/Media/Dataset_preview.png">
 </p>
 
 ### b. Data Visualization
@@ -114,7 +114,11 @@ Implemented three distinct reports presenting varied statistical insights derive
 
 2. Position Analysis
 
-- 
+- This interactive report focus on analyzing Cristiano Ronaldo's shot positions and performance against specific opponent teams.
+- Incorporated a slicer allowing users to select the opponent team, facilitating dynamic filtering of the report based on the chosen team. A table showcases detailed match-specific information such as Date, Venue (Home or Away), Total Shots Taken, Goals Scored, Knockout Match status, and Game Season for matches played by Manchester United against the selected opponent.
+- Created an interactive scatter plot, illustrating Ronaldo's positions on the football field when shots were taken against the selected opponent. Points on the scatter plot are color-coded based on whether the shot resulted in a goal or not. Enhanced the scatter plot with a tooltip displaying crucial details such as location (X, Y), goal status, distance of the shot, shot area, and more.
+- KPI cards displays key metrics including Conversion Rate and Average Distance of the shot for quick reference.
+- Integrated a line chart at the bottom depicting the timeline of shots, specifically remaining minutes vs. goals scored. Points on the timeline are color-coded based on whether the shot resulted in a goal or not. Enabled drill-down functionality on the timeline chart, clicking on a point reveals a detailed view of remaining seconds vs. goals scored during that specific minute.
 
 <p align="center">
   <img width="600" height="600" src="https://github.com/yash-pimpale/Ronaldo_United_Era_Shots_Analysis/blob/main/Media/Position_Analysis.png">
